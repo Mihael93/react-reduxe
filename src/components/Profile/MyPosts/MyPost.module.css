@@ -1,0 +1,21 @@
+.posts {
+  padding: 10px;
+}
+.posts h3 {
+  margin: 10px 0;
+}
+.posts .new {
+  background-color: darkmagenta;
+}
+.posts .new div {
+  margin: 0;
+}
+.posts .new div textarea {
+  margin: 0;
+}
+.posts .new button {
+  margin: 0;
+}
+.posts .block {
+  margin: 20px 0;
+}

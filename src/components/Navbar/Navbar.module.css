@@ -1,0 +1,15 @@
+.nav {
+  grid-area: nav;
+  background-color: darkgreen;
+  min-width: 150px;
+}
+.nav .item a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin: 20px 0;
+}
+.nav .item a.active {
+  color: goldenrod;
+}
