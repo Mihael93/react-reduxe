@@ -1,4 +1,5 @@
 // import React, { Component } from 'react';
+import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import MessageItem from "./MessageItem/MessageItem";
@@ -14,6 +15,13 @@ const Dialogs = (props) => {
       return <MessageItem key={mes.id} id={mes.id} message={mes.message} />
    })
 
+   const messageElement = React.useRef();
+
+   function sendMessage() {
+      let text = messageElement.current.value;
+      console.log(text);
+   }
+
    return (
       <div className={s.dialogs}>
          <div className={s.dialogs__items}>
@@ -22,6 +30,13 @@ const Dialogs = (props) => {
          </div>
          <div className={s.messages}>
             {messagesElements}
+         </div>
+         <div>Use messgaes here =`&gt &gt`</div>
+         <div>
+            <textarea name="" id="" cols="10" rows="5" ref={messageElement}></textarea>
+            <div>
+               <button onClick={sendMessage}>Send</button>
+            </div>
          </div>
       </div>
    )

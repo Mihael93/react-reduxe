@@ -1,3 +1,6 @@
+let renderFunction = () => {
+   console.log('Somethings goes wrong');
+};
 
 let state = {
 
@@ -9,6 +12,7 @@ let state = {
          { id: 4, message: 'tttttt', likesCount: 1 },
          { id: 5, message: 'Oppaaaa', likesCount: 3 },
       ],
+      newPostText: [],
    },
 
    dialogsPage: {
@@ -33,5 +37,29 @@ let state = {
    },
 
 };
+
+window.state = state;
+
+export function addPost() {
+   let newPost = {
+      id: 6,
+      message: state.profilePage.newPostText,
+      likesCount: 0,
+   };
+   state.profilePage.postsData.push(newPost);
+   state.profilePage.newPostText = '';
+   renderFunction(state);
+};
+
+export function updateNewPostText(newText) {
+   state.profilePage.newPostText = newText;
+   renderFunction(state);
+};
+
+
+export const subscribe = (observer) => {
+   renderFunction = observer;  // observer pattern
+};
+
 
 export default state;
