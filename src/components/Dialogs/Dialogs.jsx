@@ -6,20 +6,28 @@ import MessageItem from "./MessageItem/MessageItem";
 
 
 const Dialogs = (props) => {
+   //let data store
+   let state = props.dialogsPage;
 
-   let dialogsElements = props.data.dialogsData.map((dialog) => {
+   //let elements to make HTML
+   let dialogsElements = state.dialogsData.map((dialog) => {
       return <DialogItem key={dialog.id} id={dialog.id} name={dialog.name} />
    });
-
-   let messagesElements = props.data.messagesData.map((mes) => {
+   let messagesElements = state.messagesData.map((mes) => {
       return <MessageItem key={mes.id} id={mes.id} message={mes.message} />
    })
+   let newMessageBody = state.newMessageBody;
 
+   //get referance for symbols insert
    const messageElement = React.useRef();
 
-   function sendMessage() {
-      let text = messageElement.current.value;
-      console.log(text);
+   let sendMessage = () => {
+      props.sendMessage();
+   }
+
+   let onNewMessageChange = (event) => {
+      let body = event.target.value;
+      props.updateNewMessageBody(body);
    }
 
    return (
@@ -31,9 +39,13 @@ const Dialogs = (props) => {
          <div className={s.messages}>
             {messagesElements}
          </div>
-         <div>Use messgaes here =`&gt &gt`</div>
+         <div>Use messgaes here =&gt;&gt;&gt;&gt;&gt;</div>
          <div>
-            <textarea name="" id="" cols="10" rows="5" ref={messageElement}></textarea>
+            <textarea
+               onChange={onNewMessageChange}
+               placeholder="Enter message"
+               ref={messageElement}
+               value={newMessageBody} />
             <div>
                <button onClick={sendMessage}>Send</button>
             </div>

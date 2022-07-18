@@ -2,7 +2,8 @@
 import React from "react";
 import s from "./MyPost.module.css";
 import Post from "./Post/Post";
-import { addPostActionCreator, updateNewPostTextActionCreator, } from "../../../redux/state";
+// import { addPostActionCreator, updateNewPostTextActionCreator, } from "../../../redux/profile-reducer";
+
 
 
 const MyPost = (props) => {
@@ -13,13 +14,15 @@ const MyPost = (props) => {
 
    let newPostElement = React.useRef();
 
-   function addPost() {
-      props.dispatch(addPostActionCreator());
+   let onAddPost = () => {
+      props.addPost();
+      //props.dispatch(addPostActionCreator());
    }
 
    let onPostChage = () => {
       let text = newPostElement.current.value;
-      props.dispatch(updateNewPostTextActionCreator(text));
+      props.updateNewPostText(text);
+      // props.dispatch(updateNewPostTextActionCreator(text));
    }
 
    return (
@@ -32,7 +35,7 @@ const MyPost = (props) => {
                   ref={newPostElement}
                   value={props.newPostText} />
             </div>
-            <button onClick={addPost}>Add comment</button>
+            <button onClick={onAddPost}>Add comment</button>
             <button>Remove</button>
          </div>
          <div className={s.block}>
