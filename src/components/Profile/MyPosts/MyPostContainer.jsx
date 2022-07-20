@@ -1,28 +1,50 @@
 // import React, { Component } from 'react';
 import { addPostActionCreator, updateNewPostTextActionCreator, } from "../../../redux/profile-reducer";
 import MyPost from "./MyPost";
+import { connect } from "react-redux";
 
 
+// const MyPostContainer = () => {
 
-const MyPostContainer = (props) => {
+//    return (
+//       <StoreContext.Consumer>
+//          {(store) => {
+//             let state = store.getState();
+//             let addPost = () => {
+//                store.dispatch(addPostActionCreator());
+//             }
+//             let onPostChage = (text) => {
+//                store.dispatch(updateNewPostTextActionCreator(text));
+//             }
 
-   let state = props.store.getState();
+//             return (
+//                <MyPost
+//                   updateNewPostText={onPostChage}
+//                   addPost={addPost}
+//                   postsData={state.profilePage.postsData}
+//                   newPostText={state.profilePage.newPostText} />
+//             )
+//          }}
+//       </StoreContext.Consumer>
+//    )
+// }
 
-   let addPost = () => {
-      props.store.dispatch(addPostActionCreator());
+let mapStateToProps = (state) => {
+   return {
+      postsData: state.profilePage.postsData,
+      newPostText: state.profilePage.newPostText
    }
+};
 
-   let onPostChage = (text) => {
-      props.store.dispatch(updateNewPostTextActionCreator(text));
+let mapDispatchToProps = (dispatch) => {
+   return {
+      updateNewPostText: (text) => {
+         dispatch(updateNewPostTextActionCreator(text));
+      },
+      addPost: () => dispatch(addPostActionCreator()),
    }
+};
 
-   return (
-      <MyPost
-         updateNewPostText={onPostChage}
-         addPost={addPost}
-         postsData={state.profilePage.postsData}
-         newPostText={state.profilePage.newPostText} />
-   )
-}
+const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPost);
 
 export default MyPostContainer;
