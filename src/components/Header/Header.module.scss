@@ -3,9 +3,23 @@
    background-color: green;
    display: flex;
    align-items: center;
+   justify-content: space-between;
 
    img {
       width: 40px;
       margin-left: 2%;
+   }
+
+   .loginBlock {
+      margin-right: 40px;
+      border: 2px solid white;
+      padding: 5px;
+
+      a {
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+         letter-spacing: 2px;
+      }
    }
 }
